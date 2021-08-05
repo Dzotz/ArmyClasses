@@ -27,13 +27,13 @@ public class Main {
         Army army3 = new Army("07.08.2020");
 
         //Add squads to them and logging
-        army1.AddSquad(new Squad<>(new Infantry(true), 10));
-        army1.AddSquad(new Squad<>(new Tank(true), 5));
+        army1.addSquad(new Squad<>(new Infantry(true), 10));
+        army1.addSquad(new Squad<>(new Tank(true), 5));
         LOGGER.info(army1);
-        army2.AddSquad(new Squad<>(new Helicopter(false), 50));
-        army2.AddSquad(new Squad<>(new BTR(true, "10.11.12"), 7));
+        army2.addSquad(new Squad<>(new Helicopter(false), 50));
+        army2.addSquad(new Squad<>(new BTR(true, "10.11.12"), 7));
         LOGGER.info(army2);
-        army3.AddSquad(new Squad<>(new Airplane(false), 50));
+        army3.addSquad(new Squad<>(new Airplane(false), 50));
         LOGGER.info(army3);
 
         //Put armies to HashMap
@@ -86,5 +86,7 @@ public class Main {
         catch (Exception e){
             LOGGER.error(e.getMessage());
         }
+
+        LOGGER.info(army2.countSquadsWithoutDateOfCreation());
     }
 }

@@ -35,14 +35,14 @@ public class Army {
         }
     }
 
-    public void AddSquad (Squad<AbstractCombatUnit> squad){
+    public void addSquad(Squad<AbstractCombatUnit> squad){
         this.squads.add(squad);
     }
 
     //get info about squad in string by it's id if exists
-    public String GetSquadInfoById(int id){
+    public String getSquadInfoById(int id){
         if (id<squads.size()){
-            return squads.get(id).GetUnit().getClass().getSimpleName()+" "+squads.get(id).GetUnit().getPower();
+            return squads.get(id).getUnit().getClass().getSimpleName()+" "+squads.get(id).getUnit().getPower();
         }else return "Nothing found";
     }
 
@@ -54,29 +54,29 @@ public class Army {
     }
 
     //Check if army have any active squads
-    public boolean CheckForActiveSquads(){
-        for(Squad<AbstractCombatUnit> squad : squads){
+    public boolean checkForActiveSquads(){
+
+         /*for(Squad<AbstractCombatUnit> squad : squads){
             if (squad.GetUnit().getActive()) return true;
-        }
-        return false;
+        }*/
+
+        return squads.stream().anyMatch(s -> s.getUnit().getActive());
     }
 
-    public void DeleteSquadById (int id){
+    public void deleteSquadById(int id){
         if (id<squads.size()){
             squads.remove(id);
         }
     }
 
     //counts power of all active squads
-    public int GetArmyPower(){
-        int result = 0;
-        for (Squad<AbstractCombatUnit> squad:squads) {
-            result += squad.GetSquadPower();
-        }
-        return result;
+    public int getArmyPower(){
+        return squads.stream().mapToInt(Squad::getSquadPower).sum();
     }
 
-
+    public long countSquadsWithoutDateOfCreation(){
+        return squads.stream().filter(s->s.getUnit().getDateOfCreation().equals(new Date(0))).count();
+    }
 
     @Override
     public String toString(){
@@ -86,10 +86,7 @@ public class Army {
     //Hash of army is sum of hash of all squads in it with hash of creation date
     @Override
     public int hashCode(){
-        int res = 0;
-        for (Squad<AbstractCombatUnit> squad:squads){
-            res+=squad.hashCode();
-        }
+        int res = squads.stream().mapToInt(Squad::hashCode).sum();
         return res+dateOfCreation.hashCode();
     }
 }

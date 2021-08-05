@@ -4,7 +4,7 @@ import com.solvd.armyClasses.units.AbstractCombatUnit;
 //Generic U will always extend AbstractCombatUnit, so we can use its methods
 public class Squad<U extends AbstractCombatUnit> {
 
-    private int numberOfUnits = 0;
+    private int numberOfUnits;
     private U unit;
 
     public Squad(U unitType, int num){
@@ -12,11 +12,11 @@ public class Squad<U extends AbstractCombatUnit> {
         numberOfUnits = num;
     }
 
-    public int GetSquadPower(){
+    public Integer getSquadPower(){
         return unit.getPower()*numberOfUnits;
     }
 
-    public U GetUnit(){
+    public U getUnit(){
         return unit;
     }
 
@@ -36,8 +36,8 @@ public class Squad<U extends AbstractCombatUnit> {
             if (this == o){
                 return true;
             }
-            Squad object = (Squad) o;
-            if (object.GetUnit().equals(this.GetUnit())&&object.getNumberOfUnits()==this.numberOfUnits) return true;
+            Squad<AbstractCombatUnit> object = (Squad<AbstractCombatUnit>) o;
+            return object.getUnit().equals(this.getUnit()) && object.getNumberOfUnits() == this.numberOfUnits;
         }
         return false;
     }

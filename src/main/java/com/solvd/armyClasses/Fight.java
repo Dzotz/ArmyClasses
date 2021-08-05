@@ -49,27 +49,27 @@ public class Fight {
 
     //Two possible constructors depending on variables
     public Fight (Army army1, Army army2, String country1, String country2, String date) throws NoActiveUnitsException, CreationDateConflict{
-        if (!army1.CheckForActiveSquads()) throw new NoActiveUnitsException("There is no active units from attacking side");
+        if (!army1.checkForActiveSquads()) throw new NoActiveUnitsException("There is no active units from attacking side");
         this.attacker = army1;
         this.defender = army2;
-        this.fightResult = PredictFightResult();
+        this.fightResult = predictFightResult();
         this.attackerCountry = country1;
         this.defenderCountry = country2;
         setDateOfFight(date);
     }
 
     public Fight (Army army1, Army army2, String country1, String country2) throws NoActiveUnitsException {
-        if (!army1.CheckForActiveSquads()) throw new NoActiveUnitsException("There is no active units from attacking side");
+        if (!army1.checkForActiveSquads()) throw new NoActiveUnitsException("There is no active units from attacking side");
         this.attacker = army1;
         this.defender = army2;
-        this.fightResult = PredictFightResult();
+        this.fightResult = predictFightResult();
         this.attackerCountry = country1;
         this.defenderCountry = country2;
     }
 
     //function that check what will be in result of conflict
-    private FightResult PredictFightResult(){
-        int res = attacker.GetArmyPower() - defender.GetArmyPower();
+    private FightResult predictFightResult(){
+        int res = attacker.getArmyPower() - defender.getArmyPower();
         if (res>0){
             LOGGER.info("Win");
             return FightResult.WIN;
