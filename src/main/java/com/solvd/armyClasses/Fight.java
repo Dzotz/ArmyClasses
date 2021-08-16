@@ -10,14 +10,16 @@ import java.text.ParseException;
 import java.util.Date;
 
 //enum represents possible battle results
-enum FightResult{
-    WIN,
-    LOSS,
-    TIE
-}
+
 
 public class Fight {
     private static final Logger LOGGER = LogManager.getLogger(Fight.class.getName());
+
+    enum FightResult{
+        WIN,
+        LOSS,
+        TIE
+    }
 
     private Date dateOfFight = new Date(0);
     //armies that take part in conflict

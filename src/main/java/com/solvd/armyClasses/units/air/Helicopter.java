@@ -13,16 +13,14 @@ public class Helicopter extends FlyingCombatUnit {
     @Override
     public void allowedCommands() {
         String res;
-        if (getActive()){
+        if (getActive()) {
             res = "I can move and";
-            if (canShoot){
-                res+=" shoot";
+            if (canShoot) {
+                res += " shoot";
+            } else {
+                res += " reload";
             }
-            else{
-                res+=" reload";
-            }
-        }
-        else{
+        } else {
             res = "I can do nothing";
         }
         LOGGER.info(res);
@@ -33,16 +31,17 @@ public class Helicopter extends FlyingCombatUnit {
         this.setPower(90);
     }
 
-    public Helicopter(boolean active, String date){
+    public Helicopter(boolean active, String date) {
         super(active, date);
         this.setPower(90);
     }
 
     public void move() {
-        System.out.println("It moves by air");
+        LOGGER.info("It moves by air");
     }
+
     public void shoot() {
-        System.out.println("It shoots with rockets");
+        LOGGER.info("It shoots with rockets");
     }
 
     @Override
@@ -51,17 +50,17 @@ public class Helicopter extends FlyingCombatUnit {
     }
 
     @Override
-    public int hashCode(){
-        int res =0;
-        if (canShoot) res+=1;
-        if (getActive()) res+=1;
-        return res+getPower();
+    public int hashCode() {
+        int res = 0;
+        if (canShoot) res += 1;
+        if (getActive()) res += 1;
+        return res + getPower();
     }
 
     @Override
-    public boolean equals (Object o){
-        if (o instanceof Helicopter){
-            if (this == o){
+    public boolean equals(Object o) {
+        if (o instanceof Helicopter) {
+            if (this == o) {
                 return true;
             }
             Helicopter object = (Helicopter) o;

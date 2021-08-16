@@ -14,6 +14,18 @@ public class Airplane extends FlyingCombatUnit {
 
     private HashSet<Airbomb> bombs = new HashSet<>();
 
+    public Airplane (boolean active){
+        super(active);
+        this.setPower(100);
+        this.canShoot=true;
+    }
+
+    public Airplane(boolean active, String date){
+        super(active, date);
+        this.setPower(100);
+        this.canShoot=true;
+    }
+
     @Override
     public void allowedCommands() {
         String res;
@@ -35,17 +47,7 @@ public class Airplane extends FlyingCombatUnit {
         LOGGER.info(res);
     }
 
-    public Airplane (boolean active){
-        super(active);
-        this.setPower(100);
-        this.canShoot=true;
-    }
 
-    public Airplane(boolean active, String date){
-        super(active, date);
-        this.setPower(100);
-        this.canShoot=true;
-    }
 
     @Override
     public void move() {
