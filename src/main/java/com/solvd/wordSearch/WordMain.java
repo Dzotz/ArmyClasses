@@ -1,4 +1,4 @@
-package com.solvd.WordSearch;
+package com.solvd.wordSearch;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 

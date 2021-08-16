@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
 
-    public static void OldMain(String[] args) {
+    public static void main(String[] args) {
         //Hash Map with names and armies
         HashMap<String, Army> countries = new HashMap<>();
 
