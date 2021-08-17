@@ -49,5 +49,9 @@ public class ConnectionPool {
         freeConnections.clear();
     }
 
+    public boolean checkForConnections(){
+        return !freeConnections.isEmpty();
+    }
+
 
 }

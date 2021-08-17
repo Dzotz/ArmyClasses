@@ -23,6 +23,10 @@ public class ConnectionsMain {
             Random random = new Random();
             try{
                 Thread.sleep(random.nextInt(800)+200);
+                while(!connectionPool.checkForConnections()){
+                    LOGGER.info(Thread.currentThread().getName()+" is waiting");
+                    Thread.sleep(100);
+                }
                 Connection connection = connectionPool.getConnection();
                 connection.open(Thread.currentThread().getName());
                 connection.authBD(Thread.currentThread().getName());
